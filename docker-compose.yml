@@ -1,0 +1,32 @@
+networks:
+  chat_api_network:
+
+services:
+  mysqlDb:
+    container_name: mysqlDb
+    image: mysql:9.0.1
+    restart: 'no'
+    volumes:
+      - chatDb:/var/lib/mysql
+      - ./src/database/:/docker-entrypoint-initdb.d
+    env_file: ./.env
+    ports:
+      - '3306:3306'
+    networks:
+      - chat_api_network
+
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_MYSQL_PASSWORD}
+  phpMyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    restart: 'no'
+    env_file: ./.env
+    environment:
+       - PMA_ARBITRARY=1
+    ports:
+      - 8080:80
+    networks:
+      - chat_api_network
+volumes:
+  chatDb:
