@@ -11,7 +11,7 @@ export class TypeOrmDbConfig implements TypeOrmOptionsFactory {
       username: process.env.DB_MYSQL_USERNAME,
       password: process.env.DB_MYSQL_PASSWORD,
       database: process.env.DB_MYSQL_NAME,
-      entities: ['dist/modules/**/*.entity.js'],
+      entities: ['dist/database/entities/**/*.entity.js'],
       migrations: ['dist/database/migrations/*.js'],
       synchronize:true
     };
