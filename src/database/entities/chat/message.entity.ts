@@ -1,8 +1,8 @@
-import { Column, JoinColumn, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 import { Base } from "../base.entity";
 import { Room } from "./room.entity";
 import { User } from "../user/user.entity";
-
+@Entity()
 export class Message extends Base {
     @Column()
     roomId: string;

@@ -1,12 +1,12 @@
-import { Column, CreateDateColumn, ManyToOne } from 'typeorm';
+import { Column, CreateDateColumn, Entity, ManyToOne } from 'typeorm';
 import { Base } from '../base.entity';
 import { User } from '../user/user.entity';
-
+@Entity()
 export class ConnectedUser extends Base {
   @Column()
-  userId: number;
+  userId: string;
   @Column()
-  socketId: number;
+  socketId: string;
   @ManyToOne(() => User, (user) => user.connectedUsers, { onDelete: 'CASCADE' })
   user: User;
   @CreateDateColumn()
